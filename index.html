@@ -32,7 +32,7 @@
       display: block;
     }
 
-    /* Slide 1 Styles */
+    /* --- Slide 1 Styles --- */
     #slide1 {
       background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
     }
@@ -58,24 +58,48 @@
     .floating { animation: float 6s ease-in-out infinite; }
     @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
 
-    /* Slide 2 Styles */
+    /* --- Slide 2 Styles --- */
     #slide2 {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       color: #111;
     }
 
-    .metric-card { background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+    .metric-card { 
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); 
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(255,255,255,0.2); 
+      transition: all 0.3s ease; 
+    }
     .metric-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .metric-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; }
     .aspect-ratio-16-9 { aspect-ratio: 16 / 9; width: 100vw; height: 100vh; max-width: 100%; max-height: 100%; }
     .pulse-animation { animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.7;} }
+    @keyframes pulse { 0%,100{opacity:1;}50%{opacity:0.7;} }
+
+    /* --- Navigation Buttons --- */
+    .nav-btn {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #dc2626;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+      z-index: 50;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #prevSlide { left: 1rem; }
+    #nextSlide { right: 1rem; }
   </style>
 </head>
-
 <body class="aspect-ratio-16-9">
 
+  <!-- ===================== -->
   <!-- Slide 1 -->
+  <!-- ===================== -->
   <div id="slide1" class="slide active-slide">
     <div class="relative w-full h-full bg-overlay overflow-hidden">
       <div class="absolute inset-0 bg-cover bg-center opacity-30"
@@ -117,7 +141,9 @@
     </div>
   </div>
 
+  <!-- ===================== -->
   <!-- Slide 2 -->
+  <!-- ===================== -->
   <div id="slide2" class="slide">
     <div class="w-full h-full relative overflow-hidden">
       <div class="absolute inset-0 opacity-10">
@@ -201,25 +227,6 @@
                   </div>
                 </div>
               </div>
-
-              <div class="metric-card rounded-2xl p-8">
-                <div class="grid grid-cols-3 items-center gap-6">
-                  <div class="col-span-2">
-                    <div class="flex items-center space-x-3 mb-2">
-                      <i class="fas fa-exchange-alt text-gray-600 text-xl"></i>
-                      <span class="text-sm font-semibold text-gray-600 uppercase tracking-wide">Black Market Exchange Premium</span>
-                    </div>
-                    <div class="text-3xl font-black text-gray-900">10-12%</div>
-                    <div class="text-sm text-gray-500">vs. 2-3% pre-war standard</div>
-                  </div>
-                  <div class="col-span-1">
-                    <div class="bg-gray-100 rounded-lg p-4 text-center">
-                      <div class="text-2xl font-bold text-gray-700">↑</div>
-                      <div class="text-xs text-gray-600">400% Increase</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
@@ -241,7 +248,15 @@
     </div>
   </div>
 
+  <!-- ===================== -->
+  <!-- Navigation Buttons -->
+  <!-- ===================== -->
+  <button id="prevSlide" class="nav-btn">⬅ Prev</button>
+  <button id="nextSlide" class="nav-btn">Next ➡</button>
+
+  <!-- ===================== -->
   <!-- JS for slide navigation -->
+  <!-- ===================== -->
   <script>
     let currentSlide = 1;
     const totalSlides = 2;
@@ -253,6 +268,7 @@
       document.getElementById('slide'+n).classList.add('active-slide');
     }
 
+    // Keyboard navigation
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
@@ -263,6 +279,17 @@
         currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
         showSlide(currentSlide);
       }
+    });
+
+    // Button navigation
+    document.getElementById('nextSlide').addEventListener('click', () => {
+      currentSlide = (currentSlide % totalSlides) + 1;
+      showSlide(currentSlide);
+    });
+
+    document.getElementById('prevSlide').addEventListener('click', () => {
+      currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
+      showSlide(currentSlide);
     });
   </script>
 
