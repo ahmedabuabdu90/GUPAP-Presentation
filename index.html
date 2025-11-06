@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
+    :root {
+      --primary-red: #dc2626;
+      --primary-orange: #ea580c;
+      --primary-yellow: #f59e0b;
+      --primary-blue: #1e3a8a;
+      --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
@@ -26,10 +34,13 @@
       position: absolute;
       top: 0;
       left: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
     }
 
     .active-slide {
       display: block;
+      opacity: 1;
     }
 
     /* --- Slide 1 Styles --- */
@@ -50,32 +61,113 @@
       100% { background-position: 70% 60%; opacity: 0.8; }
     }
 
-    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1.5s ease-out forwards; }
-    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-    .delay-1 { animation-delay: 1s; } .delay-2 { animation-delay: 2s; } 
-    .delay-3 { animation-delay: 3s; } .delay-4 { animation-delay: 4s; }
+    .fade-in { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      animation: fadeIn 1.5s ease-out forwards; 
+    }
+    
+    @keyframes fadeIn { 
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      } 
+    }
+    
+    .delay-1 { animation-delay: 0.3s; } 
+    .delay-2 { animation-delay: 0.6s; } 
+    .delay-3 { animation-delay: 0.9s; } 
+    .delay-4 { animation-delay: 1.2s; }
 
-    .floating { animation: float 6s ease-in-out infinite; }
-    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    .floating { 
+      animation: float 6s ease-in-out infinite; 
+      transition: var(--transition-smooth);
+    }
+    
+    @keyframes float { 
+      0%,100% { transform: translateY(0px) rotate(0deg); } 
+      50% { transform: translateY(-10px) rotate(1deg); } 
+    }
+
+    /* --- Enhanced Card Styles --- */
+    .metric-card { 
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85)); 
+      backdrop-filter: blur(10px); 
+      border: 1px solid rgba(255,255,255,0.3); 
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .metric-card:hover::before {
+      left: 100%;
+    }
+    
+    .metric-card:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); 
+      border-color: rgba(220, 38, 38, 0.3);
+    }
+    
+    .metric-value { 
+      font-size: clamp(2rem, 4vw, 3rem); 
+      font-weight: 900; 
+      background: linear-gradient(135deg, var(--primary-red), var(--primary-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: var(--transition-smooth);
+    }
+    
+    .metric-card:hover .metric-value {
+      transform: scale(1.1);
+      background: linear-gradient(135deg, #b91c1c, #c2410c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .pulse-animation { 
+      animation: pulse 2s infinite; 
+      transition: var(--transition-smooth);
+    }
+    
+    .metric-card:hover .pulse-animation {
+      animation: pulse 0.5s infinite;
+      transform: scale(1.3);
+    }
+    
+    @keyframes pulse { 
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.7; } 
+    }
+
+    /* --- Enhanced Icons --- */
+    .metric-card i {
+      transition: var(--transition-smooth);
+    }
+    
+    .metric-card:hover i {
+      transform: scale(1.2) rotate(5deg);
+      color: var(--primary-red) !important;
+    }
 
     /* --- Slide 2 Styles --- */
     #slide2 {
       background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
       color: #111;
-    }
-
-    .metric-card { 
-      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); 
-      backdrop-filter: blur(10px); 
-      border: 1px solid rgba(255,255,255,0.2); 
-      transition: all 0.3s ease; 
-    }
-    .metric-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    .metric-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; }
-    .pulse-animation { animation: pulse 2s infinite; }
-    @keyframes pulse { 
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; } 
     }
 
     /* --- Slide 3 Styles --- */
@@ -95,22 +187,53 @@
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #111, #444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: var(--transition-smooth);
     }
     
     .supply-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .supply-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .supply-card:hover::before {
+      left: 100%;
     }
     
     .supply-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: rgba(251, 146, 60, 0.4);
     }
     
     .truck-icon {
       animation: shake 2s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .supply-card:hover .truck-icon {
+      animation: shake 0.5s infinite;
+      color: #ea580c !important;
+      transform: scale(1.2);
     }
     
     @keyframes shake {
@@ -126,19 +249,44 @@
     }
     
     .destruction-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .destruction-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .destruction-card:hover::before {
+      left: 100%;
     }
     
     .destruction-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: rgba(220, 38, 38, 0.4);
     }
     
     .destruction-icon {
       animation: destruction-pulse 3s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .destruction-card:hover .destruction-icon {
+      animation: destruction-pulse 1s infinite;
+      transform: scale(1.2);
     }
     
     @keyframes destruction-pulse {
@@ -163,19 +311,44 @@
     }
     
     .price-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .price-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .price-card:hover::before {
+      left: 100%;
     }
     
     .price-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: rgba(239, 68, 68, 0.4);
     }
     
     .price-explosion {
       animation: price-surge 2s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .price-card:hover .price-explosion {
+      animation: price-surge 0.8s infinite;
+      transform: scale(1.05);
     }
     
     @keyframes price-surge {
@@ -186,6 +359,12 @@
     .market-damage {
       background: linear-gradient(90deg, #dc2626, #ef4444);
       animation: damage-pulse 3s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .market-damage:hover {
+      animation: damage-pulse 1s infinite;
+      transform: scale(1.02);
     }
     
     @keyframes damage-pulse {
@@ -203,16 +382,40 @@
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .conclusion-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.2), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .conclusion-card:hover::before {
+      left: 100%;
     }
     
     .conclusion-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      border-color: rgba(220, 38, 38, 0.4);
     }
     
     .final-impact {
       animation: final-pulse 4s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .conclusion-card:hover .final-impact {
+      animation: final-pulse 2s infinite;
+      transform: scale(1.03);
     }
     
     @keyframes final-pulse {
@@ -224,6 +427,12 @@
       background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
       background-size: 200% 100%;
       animation: urgent-shift 3s infinite;
+      transition: var(--transition-smooth);
+    }
+    
+    .urgent-action:hover {
+      animation: urgent-shift 1s infinite;
+      transform: scale(1.02);
     }
     
     @keyframes urgent-shift {
@@ -231,24 +440,156 @@
       50% { background-position: 100% 50%; }
     }
 
-    /* --- Navigation Buttons --- */
+    /* --- Enhanced Navigation Buttons --- */
     .nav-btn {
       position: fixed;
       top: 50%;
       transform: translateY(-50%);
-      background-color: #dc2626;
+      background-color: rgba(220, 38, 38, 0.9);
       color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+      padding: 0.5rem 0.8rem;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       z-index: 50;
       cursor: pointer;
       font-weight: bold;
       border: none;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    #prevSlide { left: 1rem; }
-    #nextSlide { right: 1rem; }
+    .nav-btn:hover {
+      background-color: rgba(185, 28, 28, 0.95);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    #prevSlide { 
+      left: 1.5rem; 
+    }
+    
+    #nextSlide { 
+      right: 1.5rem; 
+    }
+
+    /* Progress Indicator */
+    .progress-container {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.5rem;
+      z-index: 40;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .progress-dot.active {
+      background-color: var(--primary-red);
+      transform: scale(1.2);
+    }
+
+    .progress-dot:hover {
+      transform: scale(1.3);
+      background-color: var(--primary-red);
+    }
+
+    /* Enhanced Animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .slide-in-left {
+      animation: slideInLeft 0.8s ease-out forwards;
+    }
+
+    .slide-in-right {
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+
+    /* Enhanced Floating Cards in Slide 1 */
+    #slide1 .floating {
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    #slide1 .floating:hover {
+      transform: translateY(-15px) scale(1.05) rotate(2deg);
+      box-shadow: 0 25px 50px rgba(220, 38, 38, 0.3);
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    }
+
+    /* Enhanced Stats in Slide 1 */
+    #slide1 .floating:hover .text-4xl {
+      transform: scale(1.2);
+      transition: var(--transition-smooth);
+    }
+
+    /* Enhanced Icons in All Slides */
+    .slide i:not(.nav-btn i) {
+      transition: var(--transition-smooth);
+    }
+
+    .slide .metric-card:hover i,
+    .slide .supply-card:hover i,
+    .slide .destruction-card:hover i,
+    .slide .price-card:hover i,
+    .slide .conclusion-card:hover i {
+      transform: scale(1.3) rotate(10deg);
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+      .nav-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0.4rem;
+      }
+      
+      #prevSlide { 
+        left: 0.8rem; 
+      }
+      
+      #nextSlide { 
+        right: 0.8rem; 
+      }
+      
+      .progress-container {
+        bottom: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -277,15 +618,15 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 fade-in delay-4">
           <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating">
-            <div class="text-4xl font-black text-red-500">500K+</div>
+            <div class="text-4xl font-black text-red-500 transition-all duration-500">500K+</div>
             <div class="uppercase text-sm text-gray-300">People in Famine</div>
           </div>
           <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:1s;">
-            <div class="text-4xl font-black text-orange-400">86%</div>
+            <div class="text-4xl font-black text-orange-400 transition-all duration-500">86%</div>
             <div class="uppercase text-sm text-gray-300">Agricultural Land Damaged</div>
           </div>
           <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:2s;">
-            <div class="text-4xl font-black text-yellow-300">95%</div>
+            <div class="text-4xl font-black text-yellow-300 transition-all duration-500">95%</div>
             <div class="uppercase text-sm text-gray-300">Livestock Deceased</div>
           </div>
         </div>
@@ -309,7 +650,7 @@
       <div class="relative z-10 h-full flex items-center">
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-12 items-center">
-            <div class="col-span-5 space-y-8">
+            <div class="col-span-5 space-y-8 slide-in-left">
               <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
@@ -336,7 +677,7 @@
               </div>
             </div>
 
-            <div class="col-span-7 space-y-6">
+            <div class="col-span-7 space-y-6 slide-in-right">
               <div class="grid grid-cols-2 gap-6">
                 <div class="metric-card rounded-2xl p-6">
                   <div class="space-y-4">
@@ -418,7 +759,7 @@
       <div class="relative z-10 h-full flex items-center">
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-12 items-center">
-            <div class="col-span-6 space-y-8">
+            <div class="col-span-6 space-y-8 slide-in-left">
               <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
@@ -445,7 +786,7 @@
               </div>
             </div>
 
-            <div class="col-span-6 space-y-6">
+            <div class="col-span-6 space-y-6 slide-in-right">
               <div class="grid grid-cols-2 gap-6">
                 <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6 border border-white/30">
                   <div class="space-y-4">
@@ -522,7 +863,7 @@
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-8 items-center">
             <!-- Left Column - Title & Overview -->
-            <div class="col-span-4 space-y-6">
+            <div class="col-span-4 space-y-6 slide-in-left">
               <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
@@ -555,7 +896,7 @@
             </div>
             
             <!-- Right Column - Detailed Breakdown -->
-            <div class="col-span-7 space-y-6">
+            <div class="col-span-7 space-y-6 slide-in-right">
               <!-- Delivery Success Rate -->
               <div class="supply-card rounded-2xl p-8">
                 <div class="space-y-6">
@@ -683,7 +1024,7 @@
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-8 items-center">
             <!-- Left Column - Title & Overview -->
-            <div class="col-span-5 space-y-6">
+            <div class="col-span-5 space-y-6 slide-in-left">
               <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
@@ -721,7 +1062,7 @@
             </div>
             
             <!-- Right Column - Destruction Metrics -->
-            <div class="col-span-7 space-y-6">
+            <div class="col-span-7 space-y-6 slide-in-right">
               <!-- Agricultural Land Damage -->
               <div class="destruction-card rounded-2xl p-8">
                 <div class="space-y-6">
@@ -832,7 +1173,7 @@
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-8 items-center">
             <!-- Left Column - Title & Price Extremes -->
-            <div class="col-span-5 space-y-6">
+            <div class="col-span-5 space-y-6 slide-in-left">
               <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                   <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
@@ -876,7 +1217,7 @@
             </div>
             
             <!-- Right Column - Market Analysis -->
-            <div class="col-span-7 space-y-6">
+            <div class="col-span-7 space-y-6 slide-in-right">
               <!-- Post-Ceasefire Stabilization -->
               <div class="price-card rounded-2xl p-8">
                 <div class="space-y-6">
@@ -1002,7 +1343,7 @@
         <div class="container mx-auto px-8">
           <div class="grid grid-cols-12 gap-8 items-center">
             <!-- Left Column - Final Assessment -->
-            <div class="col-span-6 space-y-8">
+            <div class="col-span-6 space-y-8 slide-in-left">
               <div class="space-y-6">
                 <div class="flex items-center space-x-3">
                   <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
@@ -1048,7 +1389,7 @@
             </div>
             
             <!-- Right Column - Impact Summary -->
-            <div class="col-span-6 space-y-6">
+            <div class="col-span-6 space-y-6 slide-in-right">
               <!-- Overall Impact -->
               <div class="conclusion-card rounded-2xl p-8">
                 <div class="space-y-6">
@@ -1134,30 +1475,62 @@
   <!-- ===================== -->
   <!-- Navigation Buttons -->
   <!-- ===================== -->
-  <button id="prevSlide" class="nav-btn">⬅ Prev</button>
-  <button id="nextSlide" class="nav-btn">Next ➡</button>
+  <button id="prevSlide" class="nav-btn">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <button id="nextSlide" class="nav-btn">
+    <i class="fas fa-chevron-right"></i>
+  </button>
+
+  <!-- ===================== -->
+  <!-- Progress Indicator -->
+  <!-- ===================== -->
+  <div class="progress-container">
+    <div class="progress-dot active" data-slide="1"></div>
+    <div class="progress-dot" data-slide="2"></div>
+    <div class="progress-dot" data-slide="3"></div>
+    <div class="progress-dot" data-slide="4"></div>
+    <div class="progress-dot" data-slide="5"></div>
+    <div class="progress-dot" data-slide="6"></div>
+    <div class="progress-dot" data-slide="7"></div>
+  </div>
 
   <!-- ===================== -->
   <!-- JS for slide navigation -->
   <!-- ===================== -->
   <script>
     let currentSlide = 1;
-    const totalSlides = 7; // تم تحديث العدد إلى 7
+    const totalSlides = 7;
 
     function showSlide(n) {
+      // Hide all slides
       for (let i = 1; i <= totalSlides; i++) {
         document.getElementById('slide'+i).classList.remove('active-slide');
       }
+      
+      // Show selected slide
       document.getElementById('slide'+n).classList.add('active-slide');
+      
+      // Update progress dots
+      document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+        if (index + 1 === n) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+      
+      // Update current slide
+      currentSlide = n;
     }
 
     // Keyboard navigation
     document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         currentSlide = (currentSlide % totalSlides) + 1;
         showSlide(currentSlide);
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
         showSlide(currentSlide);
@@ -1174,6 +1547,32 @@
       currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
       showSlide(currentSlide);
     });
+
+    // Progress dot navigation
+    document.querySelectorAll('.progress-dot').forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index + 1);
+      });
+    });
+
+    // Add slide-in animations based on slide position
+    function addSlideAnimations() {
+      document.querySelectorAll('.slide').forEach(slide => {
+        const leftElements = slide.querySelectorAll('.slide-in-left');
+        const rightElements = slide.querySelectorAll('.slide-in-right');
+        
+        leftElements.forEach(el => {
+          el.style.animationDelay = '0.3s';
+        });
+        
+        rightElements.forEach(el => {
+          el.style.animationDelay = '0.5s';
+        });
+      });
+    }
+
+    // Initialize animations
+    document.addEventListener('DOMContentLoaded', addSlideAnimations);
   </script>
 
 </body>
