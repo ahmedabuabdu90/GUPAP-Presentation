@@ -84,6 +84,153 @@
       color: white;
     }
 
+    /* --- Slide 4 Styles --- */
+    #slide4 {
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      color: #111;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    .supply-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .supply-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .truck-icon {
+      animation: shake 2s infinite;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* --- Slide 5 Styles --- */
+    #slide5 {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      color: #111;
+    }
+    
+    .destruction-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .destruction-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .destruction-icon {
+      animation: destruction-pulse 3s infinite;
+    }
+    
+    @keyframes destruction-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    .warning-banner {
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      animation: warning-flash 2s infinite;
+    }
+    
+    @keyframes warning-flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* --- Slide 6 Styles --- */
+    #slide6 {
+      background: linear-gradient(135deg, #fef7cd 0%, #fed7aa 100%);
+      color: #111;
+    }
+    
+    .price-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .price-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .price-explosion {
+      animation: price-surge 2s infinite;
+    }
+    
+    @keyframes price-surge {
+      0%, 100% { transform: scale(1); color: #dc2626; }
+      50% { transform: scale(1.05); color: #b91c1c; }
+    }
+    
+    .market-damage {
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      animation: damage-pulse 3s infinite;
+    }
+    
+    @keyframes damage-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    /* --- Slide 7 Styles --- */
+    #slide7 {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+    }
+    
+    .conclusion-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .conclusion-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    
+    .final-impact {
+      animation: final-pulse 4s infinite;
+    }
+    
+    @keyframes final-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.02); opacity: 0.9; }
+    }
+    
+    .urgent-action {
+      background: linear-gradient(90deg, #dc2626, #ef4444, #dc2626);
+      background-size: 200% 100%;
+      animation: urgent-shift 3s infinite;
+    }
+    
+    @keyframes urgent-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
     /* --- Navigation Buttons --- */
     .nav-btn {
       position: fixed;
@@ -366,6 +513,625 @@
   </div>
 
   <!-- ===================== -->
+  <!-- Slide 4 -->
+  <!-- ===================== -->
+  <div id="slide4" class="slide">
+    <div class="w-full h-full relative overflow-hidden">
+      <!-- Main Content -->
+      <div class="relative z-10 h-full flex items-center">
+        <div class="container mx-auto px-8">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Title & Overview -->
+            <div class="col-span-4 space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-truck text-white text-sm"></i>
+                  </div>
+                  <span class="text-sm font-semibold text-orange-600 uppercase tracking-wide">Supply Chain Crisis</span>
+                </div>
+                
+                <h1 class="section-title text-gray-900">
+                  ACCESS
+                  <span class="block text-orange-600">BLOCKED</span>
+                </h1>
+                
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Humanitarian and commercial access severely constrained, with looting and security threats crippling aid delivery.
+                </p>
+              </div>
+              
+              <!-- Key Stat -->
+              <div class="supply-card rounded-xl p-6">
+                <div class="text-center space-y-2">
+                  <div class="truck-icon text-4xl text-orange-600 mb-2">
+                    <i class="fas fa-truck"></i>
+                  </div>
+                  <div class="text-3xl font-black text-orange-600">24%</div>
+                  <div class="text-sm font-medium text-gray-600">of agreed truck volume permitted</div>
+                  <div class="text-xs text-gray-500">Post-ceasefire (Nov 1st)</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Detailed Breakdown -->
+            <div class="col-span-7 space-y-6">
+              <!-- Delivery Success Rate -->
+              <div class="supply-card rounded-2xl p-8">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-shipping-fast text-red-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Karem Abu Salem (KAS) Delivery Success</h3>
+                  </div>
+                  
+                  <div class="grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-red-600">20%</div>
+                      <div class="text-sm font-medium text-gray-600">Humanitarian Aid</div>
+                      <div class="text-xs text-gray-500">Delivery Success Rate</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-orange-600">48%</div>
+                      <div class="text-sm font-medium text-gray-600">Looting Rate</div>
+                      <div class="text-xs text-gray-500">Humanitarian Trucks</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-yellow-600">14%</div>
+                      <div class="text-sm font-medium text-gray-600">Private Sector</div>
+                      <div class="text-xs text-gray-500">Looting Rate</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Truck Analysis -->
+              <div class="grid grid-cols-2 gap-6">
+                <div class="supply-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-truck-loading text-red-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Total Trucks (Sep 29 - Oct 12)</h4>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Total Entered:</span>
+                        <span class="text-lg font-bold text-gray-900">1,223</span>
+                      </div>
+                      <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-600">Looted Contents:</span>
+                        <span class="text-lg font-bold text-red-600">422 (35%)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="supply-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-shield-alt text-orange-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Security Constraints</h4>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Public order deterioration</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-orange-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Limited security escort</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-yellow-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Route accessibility issues</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Implementation Status -->
+              <div class="supply-card rounded-2xl p-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-exclamation-triangle text-yellow-600 text-xl"></i>
+                    <span class="font-semibold text-gray-900">Ceasefire Implementation</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-sm font-medium text-yellow-600">Severely Constrained</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Source -->
+      <div class="absolute bottom-8 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-600">
+          <div class="flex items-center space-x-4">
+            <span class="font-medium">Source:</span>
+            <span>OCHA • UNRWA • WFP Logistics • Karem Abu Salem Crossing Data</span>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">Supply Chain Analysis</div>
+            <div class="text-xs">November 2025 Report</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- Slide 5 -->
+  <!-- ===================== -->
+  <div id="slide5" class="slide">
+    <div class="w-full h-full relative overflow-hidden">
+      <!-- Warning Banner -->
+      <div class="warning-banner absolute top-0 left-0 right-0 z-20">
+        <div class="container mx-auto px-8 py-3">
+          <div class="flex items-center justify-center space-x-3 text-white">
+            <i class="fas fa-exclamation-triangle text-xl"></i>
+            <span class="font-bold text-sm uppercase tracking-wide">Unprecedented Agricultural Destruction</span>
+            <i class="fas fa-exclamation-triangle text-xl"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="relative z-10 h-full flex items-center" style="padding-top: 60px;">
+        <div class="container mx-auto px-8">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Title & Overview -->
+            <div class="col-span-5 space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-seedling text-white text-sm"></i>
+                  </div>
+                  <span class="text-sm font-semibold text-red-600 uppercase tracking-wide">Sector Annihilation</span>
+                </div>
+                
+                <h1 class="section-title text-gray-900">
+                  AGRICULTURAL
+                  <span class="block text-red-600">COLLAPSE</span>
+                </h1>
+                
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  The scale of destruction to Gaza's agricultural sector is unprecedented, with domestic food production capacity deliberately dismantled.
+                </p>
+              </div>
+              
+              <!-- Critical Impact -->
+              <div class="destruction-card rounded-xl p-6">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <div class="destruction-icon text-3xl text-red-600">
+                      <i class="fas fa-skull-crossbones"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900">Livestock Sector</h3>
+                  </div>
+                  <div class="text-center">
+                    <div class="text-5xl font-black text-red-600">95%</div>
+                    <div class="text-sm font-medium text-gray-600">of cattle reported deceased</div>
+                    <div class="text-xs text-gray-500 mt-2">Virtual annihilation of livestock sector</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Destruction Metrics -->
+            <div class="col-span-7 space-y-6">
+              <!-- Agricultural Land Damage -->
+              <div class="destruction-card rounded-2xl p-8">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-map text-red-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Agricultural Land Destruction</h3>
+                  </div>
+                  
+                  <div class="grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-red-600">86%</div>
+                      <div class="text-sm font-medium text-gray-600">Total Agricultural Land</div>
+                      <div class="text-xs text-gray-500">Affected by July 2025</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-orange-600">71.2%</div>
+                      <div class="text-sm font-medium text-gray-600">Orchards & Trees</div>
+                      <div class="text-xs text-gray-500">Essential long-term assets</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-yellow-600">44.3%</div>
+                      <div class="text-sm font-medium text-gray-600">Greenhouses</div>
+                      <div class="text-xs text-gray-500">Critical infrastructure</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Infrastructure Damage -->
+              <div class="grid grid-cols-2 gap-6">
+                <div class="destruction-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-tint text-blue-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Agricultural Wells</h4>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-blue-600">52.5%</div>
+                      <div class="text-sm font-medium text-gray-600">of wells damaged</div>
+                      <div class="text-xs text-gray-500">1,188 wells affected</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="destruction-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-industry text-green-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Production Capacity</h4>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Pre-war food production:</span>
+                        <span class="text-sm font-semibold text-green-600">44% of consumption</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Current production:</span>
+                        <span class="text-sm font-semibold text-red-600">Near zero</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Strategic Impact -->
+              <div class="destruction-card rounded-2xl p-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                    <span class="font-semibold text-gray-900">Strategic Impact</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-sm font-medium text-red-600">Food System Destroyed</span>
+                  </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-600">
+                  Deliberate dismantling of Gaza's domestic food production capacity
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Source -->
+      <div class="absolute bottom-8 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-600">
+          <div class="flex items-center space-x-4">
+            <span class="font-medium">Source:</span>
+            <span>FAO • UNOSAT • GUPAP Field Assessments • Agricultural Damage Analysis</span>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">Agricultural Assessment</div>
+            <div class="text-xs">July 2025 Satellite Analysis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- Slide 6 -->
+  <!-- ===================== -->
+  <div id="slide6" class="slide">
+    <div class="w-full h-full relative overflow-hidden">
+      <!-- Main Content -->
+      <div class="relative z-10 h-full flex items-center">
+        <div class="container mx-auto px-8">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Title & Price Extremes -->
+            <div class="col-span-5 space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white text-sm"></i>
+                  </div>
+                  <span class="text-sm font-semibold text-red-600 uppercase tracking-wide">Market Volatility</span>
+                </div>
+                
+                <h1 class="section-title text-gray-900">
+                  PRICE
+                  <span class="block text-red-600">CHAOS</span>
+                </h1>
+                
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Market volatility peaked during escalation, with food prices reaching astronomical levels.
+                </p>
+              </div>
+              
+              <!-- Extreme Price Example -->
+              <div class="price-card rounded-2xl p-8">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-shopping-basket text-red-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Northern Gaza Food Basket</h3>
+                  </div>
+                  
+                  <div class="text-center space-y-2">
+                    <div class="price-explosion text-5xl font-black">1,543 ILS</div>
+                    <div class="text-sm text-gray-600">Peak price during escalation</div>
+                    <div class="text-xs text-gray-500">Represents 1,669% above pre-war levels</div>
+                  </div>
+                  
+                  <div class="bg-red-50 rounded-lg p-4">
+                    <div class="text-center">
+                      <div class="text-2xl font-black text-red-600">1,669%</div>
+                      <div class="text-sm text-red-700">Above pre-war price levels</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Market Analysis -->
+            <div class="col-span-7 space-y-6">
+              <!-- Post-Ceasefire Stabilization -->
+              <div class="price-card rounded-2xl p-8">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-balance-scale text-orange-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Post-Ceasefire Price Levels</h3>
+                  </div>
+                  
+                  <div class="grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-red-600">3-10x</div>
+                      <div class="text-sm font-medium text-gray-600">Staple Goods</div>
+                      <div class="text-xs text-gray-500">Above pre-war levels</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-orange-600">200-300%</div>
+                      <div class="text-sm font-medium text-gray-600">Transport Costs</div>
+                      <div class="text-xs text-gray-500">Above pre-war levels</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-4xl font-black text-yellow-600">46</div>
+                      <div class="text-sm font-medium text-gray-600">Markets Mapped</div>
+                      <div class="text-xs text-gray-500">Many extensively damaged</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Market Conditions -->
+              <div class="grid grid-cols-2 gap-6">
+                <div class="price-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-store text-red-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Market Conditions</h4>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-red-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Extensive damage & rubble</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-orange-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Poor sanitation conditions</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-yellow-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Sewage blockages</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="price-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-credit-card text-orange-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Consumer Constraints</h4>
+                    </div>
+                    <div class="space-y-3">
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Limited liquidity:</span>
+                        <span class="text-sm font-semibold text-red-600">Critical</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Market access:</span>
+                        <span class="text-sm font-semibold text-orange-600">Severely hampered</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Price volatility:</span>
+                        <span class="text-sm font-semibold text-yellow-600">Extreme</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Market Functionality Status -->
+              <div class="market-damage rounded-2xl p-6 text-white">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
+                    <span class="font-semibold">Market Functionality</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="font-bold">SEVERELY HAMPERED</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Source -->
+      <div class="absolute bottom-8 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-600">
+          <div class="flex items-center space-x-4">
+            <span class="font-medium">Source:</span>
+            <span>WFP Market Analysis • GUPAP Field Assessments • OCHA</span>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">Market Functionality Analysis</div>
+            <div class="text-xs">October 2025 Price Monitoring</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- Slide 7 - Final Conclusion -->
+  <!-- ===================== -->
+  <div id="slide7" class="slide">
+    <div class="w-full h-full relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 60px 60px;"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="relative z-10 h-full flex items-center">
+        <div class="container mx-auto px-8">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Final Assessment -->
+            <div class="col-span-6 space-y-8">
+              <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                  <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-exclamation text-white text-lg"></i>
+                  </div>
+                  <span class="text-sm font-semibold text-red-400 uppercase tracking-wide">Final Assessment</span>
+                </div>
+                
+                <h1 class="text-6xl font-black text-white leading-tight">
+                  SYSTEMIC
+                  <span class="block text-red-400">COLLAPSE</span>
+                </h1>
+                
+                <p class="text-xl text-gray-300 leading-relaxed">
+                  Gaza's entire economic and social infrastructure has been systematically dismantled, creating unprecedented humanitarian catastrophe.
+                </p>
+              </div>
+              
+              <!-- Critical Findings -->
+              <div class="conclusion-card rounded-2xl p-6">
+                <div class="space-y-4">
+                  <h3 class="text-xl font-bold text-white">Critical Findings</h3>
+                  <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                      <span class="text-gray-300">Domestic food production capacity destroyed</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                      <span class="text-gray-300">Financial system paralyzed</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                      <span class="text-gray-300">Supply chains completely disrupted</span>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                      <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                      <span class="text-gray-300">Market functionality severely hampered</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Impact Summary -->
+            <div class="col-span-6 space-y-6">
+              <!-- Overall Impact -->
+              <div class="conclusion-card rounded-2xl p-8">
+                <div class="space-y-6">
+                  <div class="text-center">
+                    <div class="final-impact text-6xl font-black text-red-400 mb-4">CATASTROPHIC</div>
+                    <div class="text-lg text-gray-300">Humanitarian Impact Scale</div>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                      <div class="text-3xl font-black text-orange-400">500K+</div>
+                      <div class="text-sm text-gray-400">People in Famine</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-3xl font-black text-yellow-400">95%</div>
+                      <div class="text-sm text-gray-400">Livestock Lost</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-3xl font-black text-red-400">86%</div>
+                      <div class="text-sm text-gray-400">Farmland Destroyed</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-3xl font-black text-purple-400">-29%</div>
+                      <div class="text-sm text-gray-400">GDP Decline</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Recovery Timeline -->
+              <div class="conclusion-card rounded-2xl p-6">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-clock text-yellow-400 text-xl"></i>
+                    <h4 class="font-bold text-white">Recovery Projection</h4>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-400">Agricultural recovery:</span>
+                      <span class="text-sm font-semibold text-red-400">5-10 years</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-400">Economic restoration:</span>
+                      <span class="text-sm font-semibold text-orange-400">7-15 years</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-sm text-gray-400">Infrastructure rebuild:</span>
+                      <span class="text-sm font-semibold text-yellow-400">10-20 years</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Urgent Action Required -->
+              <div class="urgent-action rounded-2xl p-6 text-white">
+                <div class="text-center space-y-3">
+                  <i class="fas fa-exclamation-triangle text-2xl"></i>
+                  <div class="font-bold text-lg">IMMEDIATE ACTION REQUIRED</div>
+                  <div class="text-sm opacity-90">Unprecedented scale of humanitarian response needed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Final Source -->
+      <div class="absolute bottom-8 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-400">
+          <div class="flex items-center space-x-4">
+            <span class="font-medium">Comprehensive Analysis:</span>
+            <span>WFP • FAO • OCHA • UNRWA • World Bank • IPC • GUPAP</span>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">Final Assessment Report</div>
+            <div class="text-xs">November 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
   <!-- Navigation Buttons -->
   <!-- ===================== -->
   <button id="prevSlide" class="nav-btn">⬅ Prev</button>
@@ -376,7 +1142,7 @@
   <!-- ===================== -->
   <script>
     let currentSlide = 1;
-    const totalSlides = 3;
+    const totalSlides = 7; // تم تحديث العدد إلى 7
 
     function showSlide(n) {
       for (let i = 1; i <= totalSlides; i++) {
