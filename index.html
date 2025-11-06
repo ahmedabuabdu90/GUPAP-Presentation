@@ -1,180 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gaza Crisis Presentation</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-    body {
-        font-family: 'Inter', sans-serif;
-        overflow: hidden;
-        margin:0;
-        height: 100vh;
-        width: 100vw;
-    }
-    .slide {
-        display: none;
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        top:0;
-        left:0;
-    }
-    .active-slide {
-        display: block;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Crisis Slides</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
 
-    /* ====== Slide 3 Styles ====== */
-    #slide3 {
-        background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
-    }
-    .section-title {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        font-weight: 900;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-    }
-    .famine-alert {
-        background: linear-gradient(135deg, #dc2626, #b91c1c);
-        animation: pulse-red 2s infinite;
-    }
-    @keyframes pulse-red {
-        0%,100% { box-shadow:0 0 0 0 rgba(220,38,38,0.7);}
-        50% { box-shadow:0 0 0 10px rgba(220,38,38,0);}
-    }
-    .stat-card {
-        background: rgba(255,255,255,0.9);
-        backdrop-filter: blur(10px);
-        border:1px solid rgba(255,255,255,0.2);
-        transition: all 0.3s ease;
-    }
-    .stat-card:hover {
-        transform: translateY(-3px);
-        box-shadow:0 15px 30px rgba(0,0,0,0.1);
-    }
-    .nutrition-bar {
-        background: linear-gradient(90deg,#10b981 0%,#f59e0b 50%,#ef4444 100%);
-        height: 8px;
-        border-radius: 4px;
-        position: relative;
-        overflow: hidden;
-    }
-    .nutrition-indicator {
-        position: absolute;
-        top: -2px;
-        width:12px;
-        height:12px;
-        background:white;
-        border:2px solid #374151;
-        border-radius:50%;
-        transform:translateX(-50%);
-    }
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
 
-    /* ====== Slide 4 Styles ====== */
-    #slide4 {
-        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
-    }
-    .supply-card {
-        background: rgba(255,255,255,0.9);
-        backdrop-filter: blur(10px);
-        border:1px solid rgba(255,255,255,0.2);
-        transition: all 0.3s ease;
-    }
-    .supply-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    }
-    .truck-icon {
-        animation: shake 2s infinite;
-    }
-    @keyframes shake {
-        0%,100% {transform: translateX(0);}
-        25% {transform: translateX(-5px);}
-        75% {transform: translateX(5px);}
-    }
+        .active-slide {
+            display: block;
+        }
 
-    /* ====== Slide 5 Styles ====== */
-    #slide5 {
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-    }
-    .destruction-card {
-        background: rgba(255,255,255,0.9);
-        backdrop-filter: blur(10px);
-        border:1px solid rgba(255,255,255,0.2);
-        transition: all 0.3s ease;
-    }
-    .destruction-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    }
-    .destruction-icon {
-        animation: destruction-pulse 3s infinite;
-    }
-    @keyframes destruction-pulse {
-        0%,100%{transform:scale(1); opacity:1;}
-        50%{transform:scale(1.1); opacity:0.8;}
-    }
-    .warning-banner {
-        background: linear-gradient(90deg,#dc2626,#ef4444);
-        animation: warning-flash 2s infinite;
-    }
-    @keyframes warning-flash {
-        0%,100%{opacity:1;}
-        50%{opacity:0.8;}
-    }
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
 
-</style>
+        /* --- Slide 3 Styles --- */
+        .slide-3 { background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%); }
+        .famine-alert {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+        }
+        .stat-card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .nutrition-bar { background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%); height:8px; border-radius:4px; position:relative; overflow:hidden; }
+        .nutrition-indicator { position:absolute; top:-2px; width:12px; height:12px; background:white; border:2px solid #374151; border-radius:50%; transform:translateX(-50%); }
+
+        /* --- Slide 4 Styles --- */
+        .slide-4 { background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%); }
+        .supply-card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .supply-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .truck-icon { animation: shake 2s infinite; }
+        @keyframes shake { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-5px);} 75%{transform:translateX(5px);} }
+
+        /* --- Slide 5 Styles --- */
+        .slide-5 { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+        .destruction-card { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
+        .destruction-card:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .destruction-icon { animation: destruction-pulse 3s infinite; }
+        @keyframes destruction-pulse { 0%,100%{transform:scale(1); opacity:1;} 50%{transform:scale(1.1); opacity:0.8;} }
+        .warning-banner { background: linear-gradient(90deg, #dc2626, #ef4444); animation: warning-flash 2s infinite; }
+        @keyframes warning-flash { 0%,100%{opacity:1;} 50%{opacity:0.8;} }
+
+        .container { max-width: 1200px; margin:0 auto; padding: 0 2rem; height:100%; display:flex; flex-direction:column; justify-content:center; }
+    </style>
 </head>
 <body>
     <!-- Slide 3 -->
-    <div id="slide3" class="slide active-slide">
-        <!-- ضع هنا كامل محتوى السلايد 3 الذي أعطيته -->
-        <!-- يمكنك نسخ كل div الخاص بالسلايد 3 داخل هذا div -->
-        <!-- مثال: -->
-        <div class="w-full h-full relative overflow-hidden">
-        <!-- ... كل محتوى slide3 ... -->
+    <div class="slide slide-3 active-slide">
+        <div class="container">
+            <div class="famine-alert rounded-2xl p-6 text-white mb-6">
+                <div class="flex items-center space-x-3 mb-4">
+                    <i class="fas fa-exclamation-triangle text-2xl"></i>
+                    <span class="text-sm font-bold uppercase tracking-wide">IPC Phase 5 Confirmed</span>
+                </div>
+                <h2 class="text-3xl font-black mb-2">FAMINE</h2>
+                <p class="text-sm opacity-90">Officially confirmed in Gaza Governorate as of August 15, 2025</p>
+            </div>
+            <h1 class="section-title mb-4 text-gray-900">FOOD <span class="block text-red-600">INSECURITY</span></h1>
+            <p class="text-xl text-gray-700 mb-6">The entire population of Gaza faces extreme hunger, with catastrophic conditions affecting over half a million people.</p>
+            <div class="grid grid-cols-2 gap-6">
+                <div class="stat-card rounded-xl p-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-black text-red-600">25%</div>
+                        <div class="text-sm font-medium text-gray-600">Famine (Phase 5)</div>
+                        <div class="text-lg font-bold text-gray-900">500K+</div>
+                        <div class="text-xs text-gray-500">people</div>
+                    </div>
+                </div>
+                <div class="stat-card rounded-xl p-4">
+                    <div class="text-center">
+                        <div class="text-2xl font-black text-orange-600">54%</div>
+                        <div class="text-sm font-medium text-gray-600">Emergency (Phase 4)</div>
+                        <div class="text-lg font-bold text-gray-900">1.07M</div>
+                        <div class="text-xs text-gray-500">people</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Slide 4 -->
-    <div id="slide4" class="slide">
-        <!-- ضع هنا كامل محتوى السلايد 4 -->
-        <div class="w-full h-full relative overflow-hidden">
-        <!-- ... كل محتوى slide4 ... -->
+    <div class="slide slide-4">
+        <div class="container">
+            <h1 class="section-title mb-4 text-gray-900">ACCESS <span class="block text-orange-600">BLOCKED</span></h1>
+            <p class="text-lg text-gray-700 mb-6">Humanitarian and commercial access severely constrained, with looting and security threats crippling aid delivery.</p>
+            <div class="supply-card rounded-xl p-6 text-center mb-4">
+                <div class="truck-icon text-4xl text-orange-600 mb-2"><i class="fas fa-truck"></i></div>
+                <div class="text-3xl font-black text-orange-600">24%</div>
+                <div class="text-sm font-medium text-gray-600">of agreed truck volume permitted</div>
+                <div class="text-xs text-gray-500">Post-ceasefire (Nov 1st)</div>
+            </div>
         </div>
     </div>
 
     <!-- Slide 5 -->
-    <div id="slide5" class="slide">
-        <!-- ضع هنا كامل محتوى السلايد 5 -->
-        <div class="w-full h-full relative overflow-hidden">
-        <!-- ... كل محتوى slide5 ... -->
+    <div class="slide slide-5">
+        <div class="warning-banner absolute top-0 left-0 right-0 z-20 py-3">
+            <div class="flex items-center justify-center space-x-3 text-white">
+                <i class="fas fa-exclamation-triangle text-xl"></i>
+                <span class="font-bold text-sm uppercase tracking-wide">Unprecedented Agricultural Destruction</span>
+                <i class="fas fa-exclamation-triangle text-xl"></i>
+            </div>
+        </div>
+        <div class="container" style="padding-top:60px;">
+            <h1 class="section-title mb-4 text-gray-900">AGRICULTURAL <span class="block text-red-600">COLLAPSE</span></h1>
+            <p class="text-lg text-gray-700 mb-6">The scale of destruction to Gaza's agricultural sector is unprecedented, with domestic food production capacity deliberately dismantled.</p>
+            <div class="destruction-card rounded-xl p-6 text-center">
+                <div class="destruction-icon text-3xl text-red-600 mb-2"><i class="fas fa-skull-crossbones"></i></div>
+                <div class="text-5xl font-black text-red-600">95%</div>
+                <div class="text-sm font-medium text-gray-600">of cattle reported deceased</div>
+            </div>
         </div>
     </div>
 
-<script>
-    let slides = document.querySelectorAll('.slide');
-    let current = 0;
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let current = 0;
 
-    function showSlide(index) {
-        slides.forEach(s => s.classList.remove('active-slide'));
-        slides[index].classList.add('active-slide');
-    }
-
-    document.addEventListener('keydown', e => {
-        if(e.key === 'ArrowRight' || e.key === ' ') {
-            e.preventDefault();
-            current = (current +1) % slides.length;
-            showSlide(current);
-        } else if(e.key === 'ArrowLeft') {
-            e.preventDefault();
-            current = (current -1 + slides.length) % slides.length;
-            showSlide(current);
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active-slide'));
+            slides[index].classList.add('active-slide');
         }
-    });
-</script>
+
+        document.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if(current < slides.length - 1){
+                    current++;
+                    showSlide(current);
+                }
+            } else if(e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if(current > 0){
+                    current--;
+                    showSlide(current);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
