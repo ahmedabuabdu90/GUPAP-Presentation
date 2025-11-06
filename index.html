@@ -1,362 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gaza Crisis Presentation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaza Crisis Presentation</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
     body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-      color: white;
+        font-family: 'Inter', sans-serif;
+        overflow: hidden;
+        margin:0;
+        height: 100vh;
+        width: 100vw;
     }
-
     .slide {
-      width: 100%;
-      height: 100%;
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top:0;
+        left:0;
     }
-
     .active-slide {
-      display: block;
+        display: block;
     }
 
-    /* -------------------- Slide 1 -------------------- */
-    #slide1 {
-      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    }
-
-    #slide1 .bg-overlay::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 70%);
-      animation: moveLight 12s ease-in-out infinite alternate;
-    }
-
-    @keyframes moveLight {
-      0% { background-position: 30% 50%; opacity: 0.5; }
-      100% { background-position: 70% 60%; opacity: 0.8; }
-    }
-
-    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1.5s ease-out forwards; }
-    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-    .delay-1 { animation-delay: 1s; } .delay-2 { animation-delay: 2s; } 
-    .delay-3 { animation-delay: 3s; } .delay-4 { animation-delay: 4s; }
-
-    .floating { animation: float 6s ease-in-out infinite; }
-    @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
-
-    /* -------------------- Slide 2 -------------------- */
-    #slide2 {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      color: #111;
-    }
-
-    .metric-card { 
-      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7)); 
-      backdrop-filter: blur(10px); 
-      border: 1px solid rgba(255,255,255,0.2); 
-      transition: all 0.3s ease; 
-    }
-    .metric-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    .metric-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; }
-
-    /* -------------------- Slide 3 -------------------- */
+    /* ====== Slide 3 Styles ====== */
     #slide3 {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
-      color: #fff;
+        background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+    }
+    .section-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+    }
+    .famine-alert {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        animation: pulse-red 2s infinite;
+    }
+    @keyframes pulse-red {
+        0%,100% { box-shadow:0 0 0 0 rgba(220,38,38,0.7);}
+        50% { box-shadow:0 0 0 10px rgba(220,38,38,0);}
+    }
+    .stat-card {
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow:0 15px 30px rgba(0,0,0,0.1);
+    }
+    .nutrition-bar {
+        background: linear-gradient(90deg,#10b981 0%,#f59e0b 50%,#ef4444 100%);
+        height: 8px;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+    }
+    .nutrition-indicator {
+        position: absolute;
+        top: -2px;
+        width:12px;
+        height:12px;
+        background:white;
+        border:2px solid #374151;
+        border-radius:50%;
+        transform:translateX(-50%);
     }
 
-    .stat-card { 
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
+    /* ====== Slide 4 Styles ====== */
+    #slide4 {
+        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
     }
-    .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
-
-    /* -------------------- Navigation -------------------- */
-    .nav-btn {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: #dc2626;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-      z-index: 50;
-      cursor: pointer;
-      font-weight: bold;
+    .supply-card {
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+    }
+    .supply-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .truck-icon {
+        animation: shake 2s infinite;
+    }
+    @keyframes shake {
+        0%,100% {transform: translateX(0);}
+        25% {transform: translateX(-5px);}
+        75% {transform: translateX(5px);}
     }
 
-    #prevSlide { left: 1rem; }
-    #nextSlide { right: 1rem; }
+    /* ====== Slide 5 Styles ====== */
+    #slide5 {
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    }
+    .destruction-card {
+        background: rgba(255,255,255,0.9);
+        backdrop-filter: blur(10px);
+        border:1px solid rgba(255,255,255,0.2);
+        transition: all 0.3s ease;
+    }
+    .destruction-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    .destruction-icon {
+        animation: destruction-pulse 3s infinite;
+    }
+    @keyframes destruction-pulse {
+        0%,100%{transform:scale(1); opacity:1;}
+        50%{transform:scale(1.1); opacity:0.8;}
+    }
+    .warning-banner {
+        background: linear-gradient(90deg,#dc2626,#ef4444);
+        animation: warning-flash 2s infinite;
+    }
+    @keyframes warning-flash {
+        0%,100%{opacity:1;}
+        50%{opacity:0.8;}
+    }
 
-    /* -------------------- Pulse Animation Fix -------------------- */
-    .pulse-animation { animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.7; } }
-
-    .aspect-ratio-16-9 { aspect-ratio: 16 / 9; width: 100vw; height: 100vh; max-width: 100%; max-height: 100%; }
-
-  </style>
+</style>
 </head>
-<body class="aspect-ratio-16-9">
-
-  <!-- ===================== -->
-  <!-- Slide 1 -->
-  <!-- ===================== -->
-  <div id="slide1" class="slide active-slide">
-    <div class="relative w-full h-full bg-overlay overflow-hidden">
-      <div class="absolute inset-0 bg-cover bg-center opacity-30"
-           style="background-image: url('https://images.unsplash.com/photo-1547234935-d39b970ca8d8?q=80&w=1920&auto=format&fit=crop');"></div>
-
-      <div class="absolute top-0 left-0 right-0 bg-red-800/30 backdrop-blur-md py-3 z-10 text-center fade-in delay-1">
-        <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
-        <span class="font-semibold tracking-wide">CRISIS ALERT: FAMINE CONFIRMED IN GAZA</span>
-        <i class="fas fa-exclamation-triangle text-yellow-400 ml-2"></i>
-      </div>
-
-      <div class="relative z-20 flex flex-col justify-center items-center text-center h-full px-6">
-        <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-tight fade-in delay-2">
-          THE GAZA CRISIS
-        </h1>
-        <p class="text-xl md:text-2xl font-light text-gray-200 mt-4 fade-in delay-3">
-          Humanitarian Emergency & Market System Analysis
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 fade-in delay-4">
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating">
-            <div class="text-4xl font-black text-red-500">500K+</div>
-            <div class="uppercase text-sm text-gray-300">People in Famine</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:1s;">
-            <div class="text-4xl font-black text-orange-400">86%</div>
-            <div class="uppercase text-sm text-gray-300">Agricultural Land Damaged</div>
-          </div>
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:2s;">
-            <div class="text-4xl font-black text-yellow-300">95%</div>
-            <div class="uppercase text-sm text-gray-300">Livestock Deceased</div>
-          </div>
+<body>
+    <!-- Slide 3 -->
+    <div id="slide3" class="slide active-slide">
+        <!-- ضع هنا كامل محتوى السلايد 3 الذي أعطيته -->
+        <!-- يمكنك نسخ كل div الخاص بالسلايد 3 داخل هذا div -->
+        <!-- مثال: -->
+        <div class="w-full h-full relative overflow-hidden">
+        <!-- ... كل محتوى slide3 ... -->
         </div>
-      </div>
-
-      <div class="absolute bottom-8 left-0 right-0 text-center text-xs text-gray-400 fade-in delay-4">
-        Data Sources: WFP • OCHA • UNRWA • IPC • GUPAP | November 2025
-      </div>
     </div>
-  </div>
 
-  <!-- ===================== -->
-  <!-- Slide 2 -->
-  <!-- ===================== -->
-  <div id="slide2" class="slide">
-    <div class="w-full h-full relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #dc3545 2px, transparent 2px); background-size: 40px 40px;"></div>
-      </div>
-
-      <div class="relative z-10 h-full flex items-center">
-        <div class="container mx-auto px-8">
-          <div class="grid grid-cols-12 gap-12 items-center">
-            <div class="col-span-5 space-y-8">
-              <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
-                    <i class="fas fa-chart-line-down text-white text-sm"></i>
-                  </div>
-                  <span class="text-sm font-semibold text-red-600 uppercase tracking-wide">Financial Collapse</span>
-                </div>
-                <h1 class="text-6xl font-black text-gray-900">
-                  ECONOMIC
-                  <span class="block text-red-600">MELTDOWN</span>
-                </h1>
-                <p class="text-xl text-gray-700 leading-relaxed">
-                  Gaza's formal economy has ceased functioning as a productive unit, with unprecedented financial instability crippling all economic activity.
-                </p>
-              </div>
-              <div class="bg-red-50 border-l-4 border-red-600 p-6 rounded-r-lg">
-                <div class="flex items-start space-x-3">
-                  <i class="fas fa-exclamation-triangle text-red-600 text-xl mt-1"></i>
-                  <div>
-                    <h3 class="font-bold text-red-800 mb-2">Critical Finding</h3>
-                    <p class="text-red-700">Real GDP declined 29% between Q1 2023 and Q1 2025, marking the deepest economic collapse in the region's history.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-span-7 space-y-6">
-              <div class="grid grid-cols-2 gap-6">
-                <div class="metric-card rounded-2xl p-6">
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-arrow-trend-down text-red-600 text-2xl"></i>
-                      <div class="pulse-animation"><div class="w-3 h-3 bg-red-600 rounded-full"></div></div>
-                    </div>
-                    <div class="metric-value text-red-600">-29%</div>
-                    <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">Real GDP Decline</div>
-                    <div class="text-xs text-gray-500">Q1 2023 - Q1 2025</div>
-                  </div>
-                </div>
-                <div class="metric-card rounded-2xl p-6">
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-lock text-orange-600 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 0.5s;"><div class="w-3 h-3 bg-orange-600 rounded-full"></div></div>
-                    </div>
-                    <div class="metric-value text-orange-600">6.5B+</div>
-                    <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">NIS Frozen</div>
-                    <div class="text-xs text-gray-500">In Palestinian Banks</div>
-                  </div>
-                </div>
-                <div class="metric-card rounded-2xl p-6">
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-mobile-alt text-yellow-600 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 1s;"><div class="w-3 h-3 bg-yellow-600 rounded-full"></div></div>
-                    </div>
-                    <div class="metric-value text-yellow-600">35-60%</div>
-                    <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">E-wallet Premium</div>
-                    <div class="text-xs text-gray-500">Above Cash Prices</div>
-                  </div>
-                </div>
-                <div class="metric-card rounded-2xl p-6">
-                  <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-money-bill-wave text-red-700 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 1.5s;"><div class="w-3 h-3 bg-red-700 rounded-full"></div></div>
-                    </div>
-                    <div class="metric-value text-red-700">30%</div>
-                    <div class="text-sm font-medium text-gray-600 uppercase tracking-wide">Cash-out Fee</div>
-                    <div class="text-xs text-gray-500">Physical Currency Access</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+    <!-- Slide 4 -->
+    <div id="slide4" class="slide">
+        <!-- ضع هنا كامل محتوى السلايد 4 -->
+        <div class="w-full h-full relative overflow-hidden">
+        <!-- ... كل محتوى slide4 ... -->
         </div>
-      </div>
-
-      <div class="absolute bottom-8 left-8 right-8">
-        <div class="flex justify-between items-center text-sm text-gray-600">
-          <div class="flex items-center space-x-4">
-            <span class="font-medium">Source:</span>
-            <span>Palestinian Central Bureau of Statistics • World Bank • IMF</span>
-          </div>
-          <div class="text-right">
-            <div class="font-medium">Financial Analysis</div>
-            <div class="text-xs">Q1 2025 Report</div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- ===================== -->
-  <!-- Slide 3 -->
-  <!-- ===================== -->
-  <div id="slide3" class="slide">
-    <div class="w-full h-full relative overflow-hidden">
-      <div class="relative z-10 h-full flex items-center">
-        <div class="container mx-auto px-8">
-          <div class="grid grid-cols-12 gap-8 items-center">
-            <div class="col-span-12 md:col-span-6 space-y-6">
-              <h1 class="text-6xl font-black text-white">Humanitarian Aid Status</h1>
-              <p class="text-xl text-gray-300 leading-relaxed">
-                Current distribution of food and water to Gaza populations, highlighting the gaps in supply chains and areas most affected by famine.
-              </p>
-              <div class="grid grid-cols-2 gap-4 mt-6">
-                <div class="stat-card">
-                  <div class="text-3xl font-bold text-red-500">60%</div>
-                  <div class="text-sm text-gray-200">Food Aid Delivered</div>
-                </div>
-                <div class="stat-card">
-                  <div class="text-3xl font-bold text-blue-400">40%</div>
-                  <div class="text-sm text-gray-200">Water Aid Delivered</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-span-12 md:col-span-6">
-              <img src="https://images.unsplash.com/photo-1581092795363-ec1e93d26a8b?q=80&w=800&auto=format&fit=crop" class="rounded-2xl shadow-2xl" alt="Aid Distribution">
-            </div>
-          </div>
+    <!-- Slide 5 -->
+    <div id="slide5" class="slide">
+        <!-- ضع هنا كامل محتوى السلايد 5 -->
+        <div class="w-full h-full relative overflow-hidden">
+        <!-- ... كل محتوى slide5 ... -->
         </div>
-      </div>
-
-      <div class="absolute bottom-8 left-8 right-8">
-        <div class="flex justify-between items-center text-sm text-gray-400">
-          <div class="flex items-center space-x-4">
-            <span class="font-medium">Source:</span>
-            <span>UN WFP • UNRWA • Local NGOs</span>
-          </div>
-          <div class="text-right">
-            <div class="font-medium">Humanitarian Report</div>
-            <div class="text-xs">November 2025</div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- ===================== -->
-  <!-- Navigation Buttons -->
-  <!-- ===================== -->
-  <button id="prevSlide" class="nav-btn">⬅ Prev</button>
-  <button id="nextSlide" class="nav-btn">Next ➡</button>
+<script>
+    let slides = document.querySelectorAll('.slide');
+    let current = 0;
 
-  <!-- ===================== -->
-  <!-- JS for slide navigation -->
-  <!-- ===================== -->
-  <script>
-    let currentSlide = 1;
-    const totalSlides = 3;
-
-    function showSlide(n) {
-      for (let i = 1; i <= totalSlides; i++) {
-        document.getElementById('slide'+i).classList.remove('active-slide');
-      }
-      document.getElementById('slide'+n).classList.add('active-slide');
+    function showSlide(index) {
+        slides.forEach(s => s.classList.remove('active-slide'));
+        slides[index].classList.add('active-slide');
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight' || e.key === ' ') {
-        e.preventDefault();
-        currentSlide = (currentSlide % totalSlides) + 1;
-        showSlide(currentSlide);
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
-        showSlide(currentSlide);
-      }
+        if(e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            current = (current +1) % slides.length;
+            showSlide(current);
+        } else if(e.key === 'ArrowLeft') {
+            e.preventDefault();
+            current = (current -1 + slides.length) % slides.length;
+            showSlide(current);
+        }
     });
-
-    // Button navigation
-    document.getElementById('nextSlide').addEventListener('click', () => {
-      currentSlide = (currentSlide % totalSlides) + 1;
-      showSlide(currentSlide);
-    });
-
-    document.getElementById('prevSlide').addEventListener('click', () => {
-      currentSlide = (currentSlide - 2 + totalSlides) % totalSlides + 1;
-      showSlide(currentSlide);
-    });
-  </script>
-
+</script>
 </body>
 </html>
