@@ -14,6 +14,7 @@
       --primary-orange: #ea580c;
       --primary-yellow: #f59e0b;
       --primary-blue: #1e3a8a;
+      --primary-green: #059669;
       --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
@@ -170,16 +171,10 @@
       color: #111;
     }
 
-    /* --- Slide 3 Styles --- */
+    /* --- Slide 3 NEW Styles --- */
     #slide3 {
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-      color: white;
-    }
-
-    /* --- Slide 4 Styles --- */
-    #slide4 {
-      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
-      color: #111;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      color: #1f2937;
     }
 
     .section-title {
@@ -187,11 +182,48 @@
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #111, #444);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      transition: var(--transition-smooth);
+    }
+    
+    .famine-alert {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      animation: pulse-red 2s infinite;
+      color: white;
+    }
+    
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+    }
+    
+    .nutrition-bar {
+      background: linear-gradient(90deg, #10b981 0%, #f59e0b 50%, #ef4444 100%);
+      height: 8px;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .nutrition-indicator {
+      position: absolute;
+      top: -2px;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border: 2px solid #374151;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.2); }
+    }
+
+    /* --- Slide 4 Styles --- */
+    #slide4 {
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      color: #111;
     }
     
     .supply-card {
@@ -440,6 +472,71 @@
       50% { background-position: 100% 50%; }
     }
 
+    /* --- NEW Slide 8 Styles --- */
+    #slide8 {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      color: #1f2937;
+    }
+    
+    .strategy-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .strategy-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.1), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .strategy-card:hover::before {
+      left: 100%;
+    }
+    
+    .strategy-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: rgba(5, 150, 105, 0.4);
+    }
+    
+    .hope-gradient {
+      background: linear-gradient(135deg, #059669, #10b981);
+      animation: hope-pulse 3s infinite;
+    }
+    
+    @keyframes hope-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
+    .urgent-badge {
+      background: linear-gradient(90deg, #dc2626, #ef4444);
+      animation: urgent-glow 2s infinite;
+    }
+    
+    @keyframes urgent-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+      50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+    }
+    
+    .strategy-card i {
+      transition: var(--transition-smooth);
+    }
+    
+    .strategy-card:hover i {
+      transform: scale(1.3) rotate(10deg);
+    }
+
     /* --- Enhanced Navigation Buttons --- */
     .nav-btn {
       position: fixed;
@@ -566,7 +663,8 @@
     .slide .supply-card:hover i,
     .slide .destruction-card:hover i,
     .slide .price-card:hover i,
-    .slide .conclusion-card:hover i {
+    .slide .conclusion-card:hover i,
+    .slide .strategy-card:hover i {
       transform: scale(1.3) rotate(10deg);
     }
 
@@ -589,6 +687,38 @@
       .progress-container {
         bottom: 1rem;
       }
+    }
+
+    /* NEW Styles for Slide 3 */
+    .stat-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.1), transparent);
+      transition: left 0.7s ease;
+    }
+    
+    .stat-card:hover::before {
+      left: 100%;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+      border-color: rgba(251, 146, 60, 0.4);
     }
   </style>
 </head>
@@ -632,8 +762,8 @@
         </div>
       </div>
 
-      <div class="absolute bottom-8 left-0 right-0 text-center text-xs text-gray-400 fade-in delay-4">
-        Data Sources: WFP • OCHA • UNRWA • IPC • GUPAP | November 2025
+      <div class="absolute bottom-0.5 left-0 right-0 text-center text-xs text-gray-400 fade-in delay-4">
+        Data Sources: WFP • OCHA • UNRWA • IPC • GUPAP | Nov 2025
       </div>
     </div>
   </div>
@@ -746,90 +876,157 @@
   </div>
 
   <!-- ===================== -->
-  <!-- Slide 3 -->
+  <!-- Slide 3 - NEW ENHANCED VERSION -->
   <!-- ===================== -->
   <div id="slide3" class="slide">
     <div class="w-full h-full relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-blue-600"></div>
-      
-      <div class="absolute inset-0 opacity-20">
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 75% 75%, rgba(255,255,255,0.3) 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #dc2626 2px, transparent 2px); background-size: 40px 40px;"></div>
       </div>
 
+      <!-- Main Content -->
       <div class="relative z-10 h-full flex items-center">
         <div class="container mx-auto px-8">
-          <div class="grid grid-cols-12 gap-12 items-center">
-            <div class="col-span-6 space-y-8 slide-in-left">
-              <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                  <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
-                    <i class="fas fa-utensils text-white text-sm"></i>
-                  </div>
-                  <span class="text-sm font-semibold text-yellow-500 uppercase tracking-wide">Food Security Crisis</span>
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Enhanced Crisis Status -->
+            <div class="col-span-5 space-y-6 slide-in-left">
+              <!-- Enhanced Famine Alert -->
+              <div class="famine-alert rounded-2xl p-6">
+                <div class="flex items-center space-x-3 mb-4 mt-8">
+                  <i class="fas fa-exclamation-triangle text-2xl"></i>
+                  <span class="text-sm font-bold uppercase tracking-wide">IPC Phase 5 Confirmed</span>
                 </div>
-                <h1 class="text-6xl font-black text-white">
-                  FAMINE
-                  <span class="block text-yellow-400">CONDITIONS</span>
+                <h2 class="text-3xl font-black mb-2">FAMINE CONDITIONS</h2>
+                <p class="text-sm opacity-90">Officially confirmed in Gaza Governorate as of August 15, 2025</p>
+              </div>
+              
+              <!-- Enhanced Title -->
+              <div class="space-y-4">
+                <h1 class="section-title text-gray-900">
+                  FOOD
+                  <span class="block text-red-600">INSECURITY</span>
                 </h1>
-                <p class="text-xl text-blue-100 leading-relaxed">
-                  Gaza faces catastrophic levels of food insecurity, with over 500,000 people experiencing famine conditions and the entire population facing acute food shortages.
+                <p class="text-xl text-gray-700 leading-relaxed">
+                  The entire population of Gaza faces extreme hunger, with catastrophic conditions affecting over half a million people.
                 </p>
               </div>
-              <div class="bg-yellow-500/20 border-l-4 border-yellow-500 p-6 rounded-r-lg">
-                <div class="flex items-start space-x-3">
-                  <i class="fas fa-exclamation-circle text-yellow-400 text-xl mt-1"></i>
-                  <div>
-                    <h3 class="font-bold text-yellow-300 mb-2">Emergency Status</h3>
-                    <p class="text-yellow-100">IPC analysis confirms famine conditions in northern Gaza, with projections indicating rapid deterioration across the entire territory.</p>
+              
+              <!-- Enhanced Population Breakdown -->
+              <div class="space-y-4">
+                <div class="stat-card rounded-xl p-4">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-skull text-red-600"></i>
+                      <div>
+                        <div class="metric-value text-red-600">25%</div>
+                        <div class="text-sm font-medium text-gray-600">Famine (Phase 5)</div>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-lg font-bold text-gray-900">500K+</div>
+                      <div class="text-xs text-gray-500">people</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="col-span-6 space-y-6 slide-in-right">
+            
+            <!-- Right Column - Enhanced Nutrition Crisis -->
+            <div class="col-span-7 space-y-6 slide-in-right">
+              <!-- Enhanced Daily Calorie Intake -->
+              <div class="stat-card rounded-2xl p-8">
+                <div class="space-y-6">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-utensils text-orange-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Daily Calorie Intake Crisis</h3>
+                  </div>
+                  
+                  <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                      <span class="text-sm font-medium text-gray-600">Current Intake</span>
+                      <span class="text-sm font-medium text-gray-600">Minimum Standard</span>
+                    </div>
+                    
+                    <div class="nutrition-bar">
+                      <div class="nutrition-indicator" style="left: 75%;"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="text-center">
+                        <div class="text-3xl font-black text-red-600">1,500-1,800</div>
+                        <div class="text-sm text-gray-600">kcal/day</div>
+                      </div>
+                      <div class="text-center">
+                        <div class="text-3xl font-black text-green-600">2,100</div>
+                        <div class="text-sm text-gray-600">kcal/day</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Enhanced Meal Frequency & Additional Metrics -->
               <div class="grid grid-cols-2 gap-6">
-                <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6 border border-white/30">
+                <div class="stat-card rounded-2xl p-6">
                   <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-bread-slice text-yellow-300 text-2xl"></i>
-                      <div class="pulse-animation"><div class="w-3 h-3 bg-yellow-300 rounded-full"></div></div>
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-clock text-orange-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Meal Frequency</h4>
                     </div>
-                    <div class="metric-value text-yellow-300">93%</div>
-                    <div class="text-sm font-medium text-blue-100 uppercase tracking-wide">Food Insecure</div>
-                    <div class="text-xs text-blue-200">Population Facing Hunger</div>
+                    <div class="space-y-2">
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Pre-war:</span>
+                        <span class="text-sm font-semibold text-green-600">3 meals/day</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Current:</span>
+                        <span class="text-sm font-semibold text-red-600">1-1.5 meals/day</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6 border border-white/30">
+                
+                <div class="stat-card rounded-2xl p-6">
                   <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-child text-red-400 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 0.5s;"><div class="w-3 h-3 bg-red-400 rounded-full"></div></div>
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-exclamation-circle text-red-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Coping Mechanism</h4>
                     </div>
-                    <div class="metric-value text-red-400">50%+</div>
-                    <div class="text-sm font-medium text-blue-100 uppercase tracking-wide">Child Malnutrition</div>
-                    <div class="text-xs text-blue-200">Under Age 5</div>
+                    <div class="text-center">
+                      <div class="metric-value text-red-600">37%</div>
+                      <div class="text-sm text-gray-600">of households</div>
+                      <div class="text-sm text-gray-600">regularly skip meals</div>
+                    </div>
                   </div>
                 </div>
-                <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6 border border-white/30">
+              </div>
+              
+              <!-- Additional Critical Metrics -->
+              <div class="grid grid-cols-2 gap-6">
+                <div class="stat-card rounded-2xl p-6">
                   <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-truck text-orange-400 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 1s;"><div class="w-3 h-3 bg-orange-400 rounded-full"></div></div>
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-truck text-orange-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Aid Delivery</h4>
                     </div>
-                    <div class="metric-value text-orange-400">70%</div>
-                    <div class="text-sm font-medium text-blue-100 uppercase tracking-wide">Aid Delivery</div>
-                    <div class="text-xs text-blue-200">Obstructed or Denied</div>
+                    <div class="text-center">
+                      <div class="metric-value text-orange-600">70%</div>
+                      <div class="text-sm text-gray-600">Obstructed or Denied</div>
+                    </div>
                   </div>
                 </div>
-                <div class="bg-white/20 backdrop-blur-lg rounded-2xl p-6 border border-white/30">
+                
+                <div class="stat-card rounded-2xl p-6">
                   <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                      <i class="fas fa-house-fire text-red-500 text-2xl"></i>
-                      <div class="pulse-animation" style="animation-delay: 1.5s;"><div class="w-3 h-3 bg-red-500 rounded-full"></div></div>
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-house-fire text-red-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Homes Destroyed</h4>
                     </div>
-                    <div class="metric-value text-red-500">60%</div>
-                    <div class="text-sm font-medium text-blue-100 uppercase tracking-wide">Homes Destroyed</div>
-                    <div class="text-xs text-blue-200">Or Severely Damaged</div>
+                    <div class="text-center">
+                      <div class="metric-value text-red-600">60%</div>
+                      <div class="text-sm text-gray-600">Or Severely Damaged</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -837,9 +1034,10 @@
           </div>
         </div>
       </div>
-
-      <div class="absolute bottom-8 left-8 right-8">
-        <div class="flex justify-between items-center text-sm text-blue-200">
+      
+      <!-- Bottom Source -->
+      <div class="absolute bottom-0.5 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-600">
           <div class="flex items-center space-x-4">
             <span class="font-medium">Source:</span>
             <span>IPC Famine Classification • WFP Food Security Analysis • UNRWA</span>
@@ -1457,15 +1655,179 @@
       </div>
       
       <!-- Final Source -->
-      <div class="absolute bottom-8 left-8 right-8">
+      <div class="absolute bottom-0.2 left-8 right-8">
         <div class="flex justify-between items-center text-sm text-gray-400">
-          <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-0.5">
             <span class="font-medium">Comprehensive Analysis:</span>
             <span>WFP • FAO • OCHA • UNRWA • World Bank • IPC • GUPAP</span>
           </div>
           <div class="text-right">
             <div class="font-medium">Final Assessment Report</div>
-            <div class="text-xs">November 2025</div>
+            <div class="text-xs">Nov 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- Slide 8 - NEW STRATEGIC WAY FORWARD -->
+  <!-- ===================== -->
+  <div id="slide8" class="slide">
+    <div class="w-full h-full relative overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, #059669 2px, transparent 2px); background-size: 40px 40px;"></div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="relative z-10 h-full flex items-center">
+        <div class="container mx-auto px-8">
+          <div class="grid grid-cols-12 gap-8 items-center">
+            <!-- Left Column - Strategic Mandate -->
+            <div class="col-span-5 space-y-6 slide-in-left">
+              <div class="space-y-4">
+                <div class="urgent-badge rounded-full px-4 py-2 text-white text-center">
+                  <span class="text-sm font-bold uppercase tracking-wide">URGENT MANDATE</span>
+                </div>
+                
+                <h1 class="section-title text-gray-900">
+                  STRATEGIC
+                  <span class="block text-green-600">RECOVERY</span>
+                </h1>
+                
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  The confirmed famine necessitates immediate focus on nutrient-dense, culturally appropriate food production and market system restoration.
+                </p>
+              </div>
+              
+              <!-- Core Objective -->
+              <div class="hope-gradient rounded-2xl p-6 text-white">
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-bullseye text-2xl"></i>
+                    <h3 class="text-xl font-bold">Core Objective</h3>
+                  </div>
+                  <p class="text-sm opacity-90">
+                    Empower women agripreneurs (UWAF) to access markets and provide nutritious food to famine-affected populations.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Strategic Pillars -->
+            <div class="col-span-7 space-y-6 slide-in-right">
+              <!-- Production Strategy -->
+              <div class="strategy-card rounded-2xl p-6">
+                <div class="space-y-4">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-seedling text-green-600 text-2xl"></i>
+                    <h3 class="text-xl font-bold text-gray-900">Targeted Production</h3>
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Prioritize most food-insecure zones</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">High-need items: fresh vegetables, protein</span>
+                      </div>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Agroecological resilience focus</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-green-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Baladi seed bank initiatives</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Market Access & Digital Integration -->
+              <div class="grid grid-cols-2 gap-6">
+                <div class="strategy-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-store text-blue-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Market Access Model</h4>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Community-led solidarity marketing</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Stable, guaranteed local market</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Scale up proven UWAF model</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="strategy-card rounded-2xl p-6">
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <i class="fas fa-mobile-alt text-purple-600 text-xl"></i>
+                      <h4 class="font-bold text-gray-900">Digital Integration</h4>
+                    </div>
+                    <div class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Training on digital transactions</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Mitigate cash-out commissions</span>
+                      </div>
+                      <div class="flex items-center space-x-2">
+                        <div class="w-2 h-2 bg-purple-600 rounded-full"></div>
+                        <span class="text-sm text-gray-600">Reduce 30% transaction costs</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Overall Strategy -->
+              <div class="strategy-card rounded-2xl p-6">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-rocket text-green-600 text-xl"></i>
+                    <span class="font-semibold text-gray-900">Overall Strategy</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-sm font-medium text-green-600">Leverage local production for resilience</span>
+                  </div>
+                </div>
+                <div class="mt-3 text-sm text-gray-600">
+                  Increase resilience against supply chain and financial shocks through women-led agricultural recovery
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bottom Source -->
+      <div class="absolute bottom-8 left-8 right-8">
+        <div class="flex justify-between items-center text-sm text-gray-600">
+          <div class="flex items-center space-x-4">
+            <span class="font-medium">Strategic Framework:</span>
+            <span>GUPAP • UWAF • Food Security Cluster • Agricultural Recovery Plan</span>
+          </div>
+          <div class="text-right">
+            <div class="font-medium">Strategic Intervention Plan</div>
+            <div class="text-xs">November 2025 - Response Framework</div>
           </div>
         </div>
       </div>
@@ -1493,6 +1855,7 @@
     <div class="progress-dot" data-slide="5"></div>
     <div class="progress-dot" data-slide="6"></div>
     <div class="progress-dot" data-slide="7"></div>
+    <div class="progress-dot" data-slide="8"></div>
   </div>
 
   <!-- ===================== -->
@@ -1500,7 +1863,7 @@
   <!-- ===================== -->
   <script>
     let currentSlide = 1;
-    const totalSlides = 7;
+    const totalSlides = 8; // Updated to 8
 
     function showSlide(n) {
       // Hide all slides
