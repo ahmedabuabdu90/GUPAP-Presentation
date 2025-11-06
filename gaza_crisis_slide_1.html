@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaza Crisis: Humanitarian Emergency Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      color: white;
+    }
+
+    .bg-overlay::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1), transparent 70%);
+      animation: moveLight 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes moveLight {
+      0% { background-position: 30% 50%; opacity: 0.5; }
+      100% { background-position: 70% 60%; opacity: 0.8; }
+    }
+
+    .typing {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: .15em solid #f87171;
+      animation: typing 3s steps(20, end), blink .7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #f87171; }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .delay-1 { animation-delay: 1s; }
+    .delay-2 { animation-delay: 2s; }
+    .delay-3 { animation-delay: 3s; }
+    .delay-4 { animation-delay: 4s; }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="relative w-full h-full bg-overlay overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center opacity-30"
+      style="background-image: url('https://images.unsplash.com/photo-1547234935-d39b970ca8d8?q=80&w=1920&auto=format&fit=crop');"></div>
+
+    <div class="absolute top-0 left-0 right-0 bg-red-800/30 backdrop-blur-md py-3 z-10 text-center fade-in delay-1">
+      <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
+      <span class="font-semibold tracking-wide">CRISIS ALERT: FAMINE CONFIRMED IN GAZA</span>
+      <i class="fas fa-exclamation-triangle text-yellow-400 ml-2"></i>
+    </div>
+
+    <div class="relative z-20 flex flex-col justify-center items-center text-center h-full px-6">
+      <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-tight fade-in delay-2 typing">
+        THE GAZA CRISIS
+      </h1>
+      <p class="text-xl md:text-2xl font-light text-gray-200 mt-4 fade-in delay-3">
+        Humanitarian Emergency & Market System Analysis
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 fade-in delay-4">
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating">
+          <div class="text-4xl font-black text-red-500">500K+</div>
+          <div class="uppercase text-sm text-gray-300">People in Famine</div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:1s;">
+          <div class="text-4xl font-black text-orange-400">86%</div>
+          <div class="uppercase text-sm text-gray-300">Agricultural Land Damaged</div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl px-6 py-6 shadow-2xl floating" style="animation-delay:2s;">
+          <div class="text-4xl font-black text-yellow-300">95%</div>
+          <div class="uppercase text-sm text-gray-300">Livestock Deceased</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-0 right-0 text-center text-xs text-gray-400 fade-in delay-4">
+      Data Sources: WFP • OCHA • UNRWA • IPC • GUPAP | November 2025
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        window.parent.postMessage('go-next', '*');
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        window.parent.postMessage('go-prev', '*');
+      }
+    });
+  </script>
+</body>
+</html>
